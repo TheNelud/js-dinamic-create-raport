@@ -1,0 +1,200 @@
+/* для всех элементов и псевдоэлементов  делаем так, */
+/* чтобы у них задавались размеры не их контента, а блока, в котором этот контент */
+*,
+*:after,
+*:before {
+  box-sizing: border-box;
+}
+
+/* блок переменных с цветами для всей страницы */
+:root {
+  /* фон */
+  --color-bg-primary: #d0d6df;
+  /* фон выбранного пункта меню */
+  --color-bg-primary-offset: #f1f3f7;
+  /* цвет фона меню */
+  --color-bg-secondary: #fff;
+  /* текст */
+  --color-text-primary: #3a3c42;
+  /* цвет иконок по умолчанию */
+  --color-text-primary-offset: #898c94;
+  /* цвета для статусов во вложенном меню */
+  --color-orange: #dc9960;
+  --color-green: #1eb8b1;
+  --color-purple: #657cc4;
+  /* чёрный цвет совпадает с цветом текста */
+  --color-black: var(--color-text-primary);
+  /* красный — нужен для пункта «Удалить» */
+  --color-red: #d92027;
+}
+
+/* настройки для всей страницы */
+body {
+  /* используем новый шрифр */
+  font-family: "Inter", sans-serif;
+  /* устанавливаем цвета на странице */
+  background-color: var(--color-bg-primary);
+  color: var(--color-text-primary);
+}
+
+/* общие настройки для всего меню */
+.menu {
+    /* включаем абсолютное позиционирование */
+    position: absolute;
+    /* говорим, что содержимое этого блока будет в контейнерах */
+    display: flex;
+    flex-direction: column;
+    /* устанавливаем цвет фона */
+    background-color: var(--color-bg-secondary);
+    /* добавляем скругление */
+    border-radius: 10px;
+    /* и отбрасываем тень */
+    box-shadow: 0 10px 20px rgba(64, 64, 64, 0.15);
+  }
+  
+  /* настройки для каждого раздела меню */
+  .menu-list {
+    /* убираем внешние отступы */
+    margin: 0;
+    /* каждый элемент будет находиться в своём блоке */
+    display: block;
+    /* ширина будет зависеть от текста внутри блока */
+    width: 100%;
+    /* добавляем внутренние отступы */
+    padding: 8px;
+  }
+  
+  /* настройки для линии-разделителя в меню */
+  .menu-list + .menu-list {
+    /* рисуем верхнюю границу на стыке двух разделов */
+    border-top: 1px solid #ddd;
+  }
+
+
+/* настройки вложенного меню */
+.menu-sub-list {
+    /* скрываем его на старте */
+    display: none;
+    /* добавляем внутренние отступы */
+    padding: 8px;
+    /* устанавливаем цвет фона */
+    background-color: var(--color-bg-secondary);
+    /* добавляем скругление и тень */
+    border-radius: 10px;
+    box-shadow: 0 10px 20px rgba(64, 64, 64, 0.15);
+    /* включаем абсолютное позиционирование */
+    position: absolute;
+    /* сдвигаем вправо на всю ширину родительского меню */
+    left: 100%;
+    /* пусть верх вложенного меню совпадает с верхом выбранного пункта */
+    top: 0;
+    /* виртуально выносим вложенное меню вперёд, чтобы оно накладывалось сверху на основное */
+    z-index: 100;
+    /* ширина меню будет зависеть от текста внутри */
+    width: 100%;
+    /* блоки с содержимым будут располагаться друг под другом */
+    flex-direction: column;
+  }
+
+/* при наведении мышки на элемент с вложенным меню — показываем вложенное меню */
+.menu-button:hover + .menu-sub-list {
+    /* до этого у нас было display:none; */
+    display: flex;
+  }
+
+/* настройки для каждого элемента в меню */
+.menu-item {
+    /* включаем абсолютное позиционирование */
+    position: relative;
+  }
+  
+  /* настройки кнопок */
+  .menu-button {
+    /* наследуем шрифт из страницы */
+    font: inherit;
+    /* убираем границы кнопки */
+    border: 0;
+    /* добавляем внутренние отступы снизу и сверху */
+    padding: 8px 8px;
+    /* делаем отступ справа */
+    padding-right: 36px;
+    /* ширина кнопки будет зависеть от текста внутри */
+    width: 100%;
+    /* добавляем скругление */
+    border-radius: 8px;
+    /* выравниваем текст по левому краю */
+    text-align: left;
+    /* оборачиваем всё в контейнеры */
+    display: flex;
+    align-items: center;
+    position: relative;
+    /* цвет фона */
+    background-color: var(--color-bg-secondary);
+  }
+
+/* настройки иконок */
+.menu-button svg {
+    /* делаем иконки нужного размера */
+    flex-shrink: 0;
+    width: 20px;
+    height: 20px;
+    /* добавляем отступ справа */
+    margin-right: 10px;
+    /* рисуем иконку бледно-серым цветом */
+    stroke: var(--color-text-primary-offset);
+  }
+  
+  /* те иконки, которые стоят после текста (вторые в списке элементов), сдвигаем к правому краю */
+  .menu-button svg:nth-of-type(2) {
+    margin-right: 0;
+    position: absolute;
+    right: 8px;
+  }
+
+/* что будет при наведении мышки на кнопку */
+.menu-button:hover {
+    /* меняем цвет фона */
+    background-color: var(--color-bg-primary-offset);
+  }
+  
+  /* что будет при наведении мышки на кнопку во вложенном меню */
+  .menu-sub-list:hover {
+    /* меняем стиль отображения, чтобы изменился цвет фона */
+    display: flex;
+  }
+  
+  /* как отреагирует иконка при наведении мышки */
+  .menu-button:hover svg {
+    /* делаем её того же цвета, что и основной текст */
+    stroke: var(--color-text-primary);
+  }
+  
+  
+  
+  /* подсвечиваем красным пункт «Удалить» при наведении мышки */
+  .menu-button--delete:hover {
+    color: var(--color-red);
+  }
+  /* и то же самое делаем с иконкой */
+  .menu-button--delete:hover svg:first-of-type {
+    stroke: var(--color-red);
+  }
+
+/* раскрашиваем иконки во вложенном меню */
+.menu-button--orange svg:first-of-type {
+    stroke: var(--color-orange);
+  }
+  .menu-button--green svg:first-of-type {
+    stroke: var(--color-green);
+  }
+  .menu-button--purple svg:first-of-type {
+    stroke: var(--color-purple);
+  }
+  .menu-button--black svg:first-of-type {
+    stroke: var(--color-black);
+  }
+  
+  /* и раскрашиваем галочку во вложенном меню */
+  .menu-button--checked svg:nth-of-type(2) {
+    stroke: var(--color-purple);
+  }
