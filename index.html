@@ -6,6 +6,7 @@
 	<title>Создание таблиц</title>
     <!-- подключаем нормализатор CSS -->
     <link rel="stylesheet" href="static/css/reset.min.css">
+    <link rel="stylesheet" href="static/css/modal_create_table.css">
     <link rel="stylesheet" type="text/css" href="static/css/context_menu.css">
 </head>
 <body>
@@ -17,12 +18,12 @@
         <!-- список с элементами меню -->
         <li class="menu-item">
             <!-- каждый пункт меню — это кнопка -->
-            <button class="menu-button">
+            <a class="menu-button" type="button" href="#create_modal_table" >
             <!-- иконка -->
-            <i data-feather="plus"></i>
+            <i data-feather="plus" ></i>
                 <!-- название пункта меню -->
                 Создать таблицу
-            </button>
+            </a>
         </li>
         </ul>
     
@@ -40,13 +41,99 @@
             <li class="menu-item"><button class="menu-button"><i data-feather="download"></i>Печать</button></li>
         </ul>
     </div>
+    
+    <div id="create_modal_table">
+        <!-- <div class="menu"> -->
+            <!-- первый раздел в меню -->
+        <!-- <ul class="menu-list"> -->
+            <!-- список с элементами меню -->
+            <!-- <ul class="menu-list"> -->
+            <!-- обычные пункты меню -->
+                <!-- <li class="menu-item"><button class="menu-button"><i data-feather="save"></i>Обьеденить</button></li> -->
+                <!-- <li class="menu-item"><button class="menu-button"><i data-feather="edit"></i>Редактировать</button></li>
+                <li class="menu-item"><button class="menu-button menu-button--delete"><i data-feather="trash-2"></i>Удалить</button></li> -->
+            <!-- </ul>
+            
+        </div> -->
+        <a href="#" class="close_window">x</a><br>
+        <p>Создать таблицу</p><br>
+        <div class="mod-setting-table">
+            <table>
+                <tr><td>Количество строк:</td><td><input type="number"name="rows"id="rows"size="20" onchange="change_tr()" value="2"></td></tr>
+                <tr><td>Количество столбцов:</td><td><input type="number"id="ecells"name="ecells"size="20"onchange="change_cells()"value="2"></td></tr>
+                <tr><td>Отступ от рамки до содержимого таблицы (cellpadding), px:</td><td> <input type="number"id="cellpadd"name="cellpadd"size="2"value="0"></td></tr>
+                <tr><td>Граница таблицы в пикселях:</td><td><input type="text"id="bord"name="bord"size="20"value="1"></td></tr>
+                <tr><td>Цвет границ таблицы:</td><td>
+                <select size="1" name="bordcolor"id="bordcolor"onchange="addbordercolor()">
+                  <option>черный</option>
+                  <option>красный</option>
+                  <option>зеленый</option>
+                  <option>синий</option>
+                  <option>коричневый</option>
+                </select>
+                </td></tr>
+                <tr><td>Отображение внешних границ таблицы (frame):</td><td>
+                <select size="1" name="bordframe"id="bordframe"onchange="addframe()">
+                  <option>все границы</option>
+                  <option>нет внешних границ</option>
+                  <option>граница по верхнему краю таблицы</option>
+                  <option>граница по нижнему краю таблицы</option>
+                  <option>граница по правому краю таблицы</option>
+                  <option>граница по левому краю таблицы</option>
+                  <option>границы по верхнему и нижнему краям таблицы</option>
+                  <option>граница по левому и правому краям таблицы</option>
+                </select>
+                </td></tr>
+                <tr><td>Отображение внутренних границ таблицы (rules):</td><td>
+                <select size="1" name="bordrules"id="bordrules"onchange="addrules()">
+                  <option>все внутренние границы</option>
+                  <option>нет границ</option>
+                  <option>границы между столбцами</option>
+                  <option>границы между строками</option>
+                </select>
+                </td></tr>
+                <tr><td>Выравнивание содержимого ячеек:</td><td>
+                <select size="1" name="cell_align"id="cell_align"onchange="change_align()">
+                  <option>по центру</option>
+                  <option>по левому краю</option>
+                  <option>по правому краю</option>
+                </select>
+                </td></tr>
+                </table>
+                 
+                <h1>2.Введите значения в ячейки таблицы:</h1>
+                 
+                
+        </div>
+        <br>
+        <div class="my_table_previe">
+            <table  id="my_table" name="my_table" cellpadding="2">
+                <thead>
+                <tr>
+                    <th><input type="text" value="текст" size="4"></th>
+                    <th><input type="text" value="текст" size="4"></th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td><input type="text" value="текст" size="4"></td>
+                    <td><input type="text" value="текст" size="4"></td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
 
-    <div>
-
+        <div class="itog_code" id="itog_code" name="itog_code""></div>
+        <button class="mod_button_view_html" onclick="get_result()">Просмотреть HTML</button>
+        <button class="mod_button_create" onclick="">Создать</button>
     </div>
+    
+
+    <div id="result" name="result"></div>
 
     <script src='static/js/feather.min.js'></script>
     <script src="static/js/jquery-3.6.3.min.js" type="text/javascript"></script>
     <script src="static/js/context_menu.js" type="text/javascript"></script>
+    <script src="static/js/create_table.js" type="text/javascript"></script>
 </body>
 </html>

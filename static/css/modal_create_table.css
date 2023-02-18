@@ -1,0 +1,60 @@
+#create_modal_table{
+    width: 1200px;
+    height: 600px;
+    text-align: center;
+    
+    border: 1px solid #989494;
+    border-radius: 10px;
+    color: #ffffff;
+    display: none;
+    position: absolute;
+    top: 20%;
+    left: 20%;
+    background: rgba(93, 93, 93, 0.9);
+    margin: auto;
+}
+
+#create_modal_table:target {display: block;}
+
+.close_window{
+    display: inline-block;
+    border-radius: 100%;
+    color: #000000;
+    padding: 0 10px;
+    text-decoration: none;
+    background: #f2f2f2;
+    font-size: 14pt;
+    cursor:pointer;
+    right: 5px;
+    top: 5px;
+    position: absolute;
+}
+.close_window:hover {background: #e6e6ff;}
+.mod_button_view_html{
+    position: absolute;
+    bottom: 2%;
+    right:10%;
+    border: #989494;
+    border-radius: 10%;
+}
+.mod_button_create{
+    position: absolute;
+    bottom: 2%;
+    right:2%;
+    border: #989494;
+    border-radius: 10%;
+}
+.mod-setting-table{
+    text-align: left;
+}
+.my_table_previe{
+    text-align: left;
+}
+.itog_code{
+    text-align: left;
+    width: 340px;
+    height: 535px;
+    position: absolute;
+    top: 5%;
+    left: 70%;
+}

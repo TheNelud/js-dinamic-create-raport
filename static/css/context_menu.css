@@ -198,3 +198,7 @@ body {
   .menu-button--checked svg:nth-of-type(2) {
     stroke: var(--color-purple);
   }
+
+  a{
+    text-decoration: none;
+  }
